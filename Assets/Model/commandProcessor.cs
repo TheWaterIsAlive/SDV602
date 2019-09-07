@@ -12,7 +12,7 @@ public class commandProcessor
     {
     }
 
-
+    /*=======================================+Format Command and Start Command Process+=============================================*/
     public String parseCommand(String parsedCommand)
     {
         String _result = "Do not understand";
@@ -45,3 +45,4 @@ public class commandProcessor
 
     }
 }
+/*=======================================-Format Command and Start Command Process-=============================================*/

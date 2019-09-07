@@ -23,18 +23,28 @@ public class textInput : MonoBehaviour
 
     }
     /*=====================-Sets up current text interface-========================*/
-    private void submitInput(string submitedInput)
+
+
+    /*=====================+Code for when a command is entered+========================*/
+    private void submitInput(string submittedInput)
     {
          string _currentText = output.text;
     
         commandProcessor _commandProcessor = new commandProcessor();
-        output.text = _commandProcessor.parseCommand(submitedInput);
+        output.text = _commandProcessor.parseCommand(submittedInput);
         input.text = "";
         input.ActivateInputField();
     }
+    /*=====================-Code for when a command is entered-========================*/
 
-    private void ChangeInput(string submitedInput)
+
+
+    /*=====================+Code for when the input is changed+========================*/
+    private void ChangeInput(string submittedInput)
     {
-        Debug.Log(submitedInput);
+        Debug.Log(submittedInput);
     }
+
+    /*=====================-Code for when the input is changed-========================*/
+
 }

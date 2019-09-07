@@ -4,5 +4,12 @@ using UnityEngine;
 
 public class trait : MonoBehaviour
 {
+    /*
+     * 
+     * 
+     * Unimplemented class
+     * 
+     * 
+     */
    
 }

@@ -4,9 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ScreenChange : MonoBehaviour
 {
+
+
+    /*++++++++++++++Place Holder Class++++++++++++++*/
+    public string targetScene = "game";
     public void ChangeScene()
     {
-        SceneManager.LoadScene("game");
+        SceneManager.LoadScene(targetScene);
 
     }
+
+    /*--------------Place Holder Class-------------*/
 }

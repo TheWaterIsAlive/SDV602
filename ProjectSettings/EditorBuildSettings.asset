@@ -6,18 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/main.unity
+    path: Assets/View/main.unity
     guid: 9027f131c6fec2840b9f2231a8bcf46c
   - enabled: 1
-    path: Assets/Scenes/creation.unity
+    path: Assets/View/creation.unity
     guid: 6bded674fbebd5d449965389b63222fb
   - enabled: 1
-    path: Assets/Scenes/game.unity
+    path: Assets/View/game.unity
     guid: 01eb0c02cb4d3594684a9c4739633dbd
   - enabled: 1
-    path: Assets/Scenes/sheet.unity
+    path: Assets/View/sheet.unity
     guid: 263fe4a1114112f40b62251218d07727
   - enabled: 1
-    path: Assets/Scenes/spell.unity
+    path: Assets/View/spell.unity
     guid: 17ca6a4a1af4f13459fe9467f95dd7c3
   m_configObjects: {}
