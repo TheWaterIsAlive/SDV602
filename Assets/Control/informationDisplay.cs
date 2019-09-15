@@ -8,14 +8,42 @@ public class informationDisplay : MonoBehaviour
 {
     /*======================================+Connects to screen inputs+===================================*/
     public Text inputName;
+    public InputField inputMight;
+    public InputField inputEndurance;
+    public InputField inputFinesse;
+    public InputField inputMind;
+    public InputField inputSoul;
+    public Text inputSkillPoints;
+    public Dropdown weakness;
     /*======================================-Connects to screen inputs-===================================*/
     void Start()
     {
-      
-
+        if (weakness != null)
+        {
+            weakness.onValueChanged.AddListener(resetAttributes);
+        }
     }
 
 
+   
+    
+     
+    public void resetAttributes(int placeHolder)
+    {
+
+       // inputName.text = "John";
+
+
+        if (inputMight != null && inputEndurance != null && inputFinesse != null && inputMind != null && inputSoul != null)
+        {
+            inputMight.text = "0";
+            inputEndurance.text = "0";
+            inputFinesse.text = "0";
+            inputMind.text = "0";
+            inputSoul.text = "0";
+        }
+        
+    }
 
 
 
@@ -36,6 +64,7 @@ public class informationDisplay : MonoBehaviour
 
     /*======================================-Code for when confirm is pressed-===================================*/
 
+    
 
 
 }

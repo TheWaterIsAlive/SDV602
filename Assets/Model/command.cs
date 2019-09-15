@@ -135,6 +135,13 @@ public class MenuCommand : command
                 SceneManager.LoadScene("sheet");
 
                 break;
+
+            case "save":
+
+                if (persist.control != null) { 
+                persist.control.Save();
+                }
+                break;
         }
 
 
@@ -163,14 +170,16 @@ public class MenuCommand : command
             Debug.Log("Attacking" + adverb);
             splitCommand = pSplitCommand;
             scene lcScene = GameManager.instance.gameModel.currentScene; //Gains a copy of the current scene for local use
-                                                                         /* -Loads required varables- */
+            /* -Loads required varables- */
 
         /*
          * 
          * Switch statement for the four game directions.
          * The game loads the current scene.
-         * The game wont proceed if the target scene is an Empty scene and an obstacle.
+         * The game wont proceed if the target scene is an Empty scene
+         * Set lcScene to the target space  and contiune if it is an obstacle.
          * Removes the obstacle from between the current scene and the next screen.
+         * Set current scene to current scenes with updated information.
          * 
          */
 
@@ -183,40 +192,62 @@ public class MenuCommand : command
                 case "north":
                     lcScene = GameManager.instance.gameModel.currentScene;
                     if (lcScene.North != "Empty")
-                        if (lcScene.SceneType == "obstacle")
+                    lcScene = elementManager.allScenes[GameManager.instance.gameModel.currentScene.North];
+                if (lcScene.SceneType == "obstacle")
                         {
-                            GameManager.instance.gameModel.currentScene.North = elementManager.allScenes[lcScene.North].North;
-                        }
+                    ///GameManager.instance.gameModel.currentScene.North = elementManager.allScenes[lcScene.North].North;
+                    elementManager.allScenes[lcScene.South].North = lcScene.North;
+                    GameManager.instance.gameModel.currentScene = elementManager.allScenes[lcScene.North];
+                }
                     break;
                 /* -Code for attack north- */
                 /* +Code for attack south+ */
                 case "south":
                     lcScene = GameManager.instance.gameModel.currentScene;
                     if (lcScene.South != "Empty")
-                        if (lcScene.SceneType == "obstacle")
+
+                    lcScene = elementManager.allScenes[GameManager.instance.gameModel.currentScene.South];
+
+                         if (lcScene.SceneType == "obstacle")
                         {
-                            GameManager.instance.gameModel.currentScene.South = elementManager.allScenes[lcScene.South].South;
-                        }
+
+                         
+                        //GameManager.instance.gameModel.currentScene.North = elementManager.allScenes[lcScene.North].North;
+                        elementManager.allScenes[lcScene.North].South = lcScene.South;
+                        GameManager.instance.gameModel.currentScene = elementManager.allScenes[lcScene.North];
+                    }
                     break;
                 /* -Code for attack south- */
                 /* +Code for attack west+ */
                 case "west":
                     lcScene = GameManager.instance.gameModel.currentScene;
                     if (lcScene.West != "Empty")
-                        if (lcScene.SceneType == "obstacle")
+
+                    lcScene = elementManager.allScenes[GameManager.instance.gameModel.currentScene.West];
+                if (lcScene.SceneType == "obstacle")
                         {
-                            GameManager.instance.gameModel.currentScene.West = elementManager.allScenes[lcScene.West].West;
-                        }
+                    // GameManager.instance.gameModel.currentScene.West = elementManager.allScenes[lcScene.West].West;
+
+                    elementManager.allScenes[lcScene.East].West = lcScene.West;
+                    GameManager.instance.gameModel.currentScene = elementManager.allScenes[lcScene.East];
+
+
+                }
                     break;
                 /* -Code for attack west- */
                 /* +Code for attack east+ */
                 case "east":
                     lcScene = GameManager.instance.gameModel.currentScene;
                     if (lcScene.East != "Empty")
-                        if (lcScene.SceneType == "obstacle")
+                    lcScene = elementManager.allScenes[GameManager.instance.gameModel.currentScene.East];
+                if (lcScene.SceneType == "obstacle")
                         {
-                            GameManager.instance.gameModel.currentScene.East = elementManager.allScenes[lcScene.East].East;
-                        }
+                    // GameManager.instance.gameModel.currentScene.East = elementManager.allScenes[lcScene.East].East;
+
+                    elementManager.allScenes[lcScene.West].East = lcScene.East;
+                    GameManager.instance.gameModel.currentScene = elementManager.allScenes[lcScene.West];
+
+                }
                     break;
                     /* -Code for attack east- */
             }

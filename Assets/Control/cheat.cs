@@ -1,16 +1,14 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-public class textInput : MonoBehaviour
+
+public class cheat : MonoBehaviour
 {
-    InputField input;
+    public InputField input;
     InputField.SubmitEvent submitEvent;
 
     public Text output;
-    //public string commandType = "game";
-
-    // Use this for initialization
-
 
     /*=====================+Sets up current text interface+========================*/
     void Start()
@@ -18,10 +16,9 @@ public class textInput : MonoBehaviour
         input = this.GetComponent<InputField>();
         submitEvent = new InputField.SubmitEvent();
         submitEvent.AddListener(submitInput);
-        input.onEndEdit = submitEvent;
-        if (output != null)
+        if (input != null)
         {
-            output.text = GameManager.instance.gameModel.currentScene.fullScene;
+            input.onEndEdit = submitEvent;
         }
     }
     /*=====================-Sets up current text interface-========================*/
@@ -30,13 +27,21 @@ public class textInput : MonoBehaviour
     /*=====================+Code for when a command is entered+========================*/
     private void submitInput(string submittedInput)
     {
-         //string _currentText = output.text;
-    
-        commandProcessor _commandProcessor = new commandProcessor();
-        if (output != null)
+        string _currentText = output.text;
+
+        if (submittedInput == "killmode")
         {
-            output.text = _commandProcessor.parseCommand(submittedInput);
+            output.text = "Blood from a stone";
+            elementManager.allScenes["Glowing Pool"].South = "Master's Room";
+
         }
+
+        else if (submittedInput == "howDoYouTurnThisOn") {
+            output.text = "Nice Car";
+            elementManager.allScenes["Stone Guard"].South = "A Blue Car sits. It Throws stones at you.";
+
+        }
+
         input.text = "";
         input.ActivateInputField();
     }
@@ -51,5 +56,4 @@ public class textInput : MonoBehaviour
     }
 
     /*=====================-Code for when the input is changed-========================*/
-
 }

@@ -15,4 +15,18 @@ public class ScreenChange : MonoBehaviour
     }
 
     /*--------------Place Holder Class-------------*/
+
+
+    public void loadGame() {
+
+        if (persist.control != null)
+        {
+            persist.control.Load();
+        }
+        SceneManager.LoadScene("game");
+
+
+    }
+
+
 }

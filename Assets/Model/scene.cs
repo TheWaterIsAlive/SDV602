@@ -25,7 +25,7 @@ public class scene
     public command SceneCommand { get => _sceneCommand; set => _sceneCommand = value; }
     public string Story { get => _story; set => _story = value; }
    
-    public string AdjacentText { get => _adjacentText; set => _adjacentText = value; }
+    //public string AdjacentText { get => _adjacentText; set => _adjacentText = value; }
     public string ObstacleOne { get => _obstacleOne; set => _obstacleOne = value; }
     public string ObstacleTwo { get => _obstacleTwo; set => _obstacleTwo = value; }
     public string North { get => _north; set => _north = value; }
@@ -51,31 +51,36 @@ public class scene
     public string fullScene
     {
         get => _story
-            + " To the north " + elementManager.allScenes[_north].AdjacentText
-            + " To the east " + elementManager.allScenes[_east].AdjacentText
-            + " To the west " + elementManager.allScenes[_west].AdjacentText
-            + " To the south " + elementManager.allScenes[_south].AdjacentText;
+            + elementManager.allScenes[_north].nextRoom(_north, "To the north")
+            + elementManager.allScenes[_east].nextRoom(_east, "To the east")
+            + elementManager.allScenes[_west].nextRoom(_west, "To the west")
+            + elementManager.allScenes[_south].nextRoom(_south, "To the south");
     }
 
     /*=======================================-Creates string with all scene information-=============================================*/
-    /* public bool isArea() {
+  
+
+    public void removeObstacle() {
 
 
-         if (SceneType == "area")
-         {
-             return true;
 
-         }
-         else {
+    }
 
-             return false;
-         }
+    public string nextRoom(string pRoomName, string pDirection) {
+
+        if (pRoomName != "Empty")
+        {
+            return " " + pDirection + " " + _adjacentText;
+
+        }
+        else
+        {
+
+            return "";
+        }
 
 
-     }
-
-      */
-
+    }
 
 
 

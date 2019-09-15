@@ -53,6 +53,7 @@ public class gameModel
         elementManager.allScenes["Stone Guard"].SceneType = "obstacle";
         elementManager.allScenes["Master's Room"].North = "Glowing Pool";
         elementManager.allScenes["Glowing Pool"].South = "Stone Guard";
+        elementManager.allScenes["Stone Guard"].North = "Glowing Pool";
         elementManager.allScenes["Stone Guard"].South = "Master's Room";
 
         // firstScene = "Masters Room";

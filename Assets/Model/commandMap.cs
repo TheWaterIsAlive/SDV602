@@ -25,12 +25,13 @@ public class commandMap : MonoBehaviour
         Commands.Add("move south", new MoveCommand("south"));
         Commands.Add("move east", new MoveCommand("east"));
         Commands.Add("move west", new MoveCommand("west"));
-        Commands.Add("attack north", new MoveCommand("north"));
-        Commands.Add("attack west", new MoveCommand("west"));
-        Commands.Add("attack south", new MoveCommand("south"));
-        Commands.Add("attack east", new MoveCommand("east"));
+        Commands.Add("attack north", new AttackCommand("north"));
+        Commands.Add("attack west", new AttackCommand("west"));
+        Commands.Add("attack south", new AttackCommand("south"));
+        Commands.Add("attack east", new AttackCommand("east"));
         Commands.Add("menu spell", new MenuCommand("spell"));
         Commands.Add("menu character", new MenuCommand("character"));
+        Commands.Add("menu save", new MenuCommand("save"));
 
 
     }
