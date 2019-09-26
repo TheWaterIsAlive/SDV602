@@ -29,8 +29,8 @@ public class character
 
     public static void createCharacter(string pName) {
 
-        GameManager.instance.gameModel.playerCharacter = new character();
-        GameManager.instance.gameModel.playerCharacter.Name = pName;
+        gameModel.playerCharacter = new character();
+        gameModel.playerCharacter.Name = pName;
 
 
     }

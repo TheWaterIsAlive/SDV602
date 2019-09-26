@@ -31,7 +31,7 @@ public class persist : MonoBehaviour
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
 
-        character data = GameManager.instance.gameModel.playerCharacter;
+        character data = gameModel.playerCharacter;
 
         bf.Serialize(file, data);
         file.Close();
@@ -44,7 +44,7 @@ public class persist : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
             character data = (character)bf.Deserialize(file);
-            GameManager.instance.gameModel.playerCharacter = data;
+            gameModel.playerCharacter = data;
             file.Close();
 
             //Health = data.health;

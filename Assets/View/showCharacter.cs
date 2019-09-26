@@ -17,9 +17,9 @@ namespace Assets.View
 
         void Start()
         {
-            if (outputName.text != null && GameManager.instance.gameModel.playerCharacter.Name != null)
+            if (outputName.text != null && gameModel.playerCharacter.Name != null)
             {
-                outputName.text = GameManager.instance.gameModel.playerCharacter.Name;// Connects output to outputName
+                outputName.text = gameModel.playerCharacter.Name;// Connects output to outputName
             }
 
 

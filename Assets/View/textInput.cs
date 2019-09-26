@@ -21,7 +21,7 @@ public class textInput : MonoBehaviour
         input.onEndEdit = submitEvent;
         if (output != null)
         {
-            output.text = GameManager.instance.gameModel.currentScene.fullScene;
+            output.text = gameModel.currentScene.fullScene;
         }
     }
     /*=====================-Sets up current text interface-========================*/

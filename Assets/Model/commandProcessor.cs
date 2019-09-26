@@ -34,11 +34,11 @@ public class commandProcessor
                 _result = _commandMap.Result;
             }
             else
-                _result = GameManager.instance.gameModel.currentScene.fullScene + "\n" + _result;
+                _result = gameModel.currentScene.fullScene + "\n" + _result;
 
         }
         else
-            _result = GameManager.instance.gameModel.currentScene.fullScene + "\n" + _result;
+            _result = gameModel.currentScene.fullScene + "\n" + _result;
 
 
         return _result;

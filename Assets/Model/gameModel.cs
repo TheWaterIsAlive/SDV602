@@ -5,17 +5,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class gameModel
+public static class gameModel
 {
     /*=======================================+Stores Objects related to game state+=============================================*/
-    public scene currentScene;
-    public string sceneCode = "Master's Room";
-    public character playerCharacter;
+    public static scene currentScene;
+    public static string sceneCode = "Master's Room";
+    public static character playerCharacter;
     /*=======================================-Stores Objects related to game state-=============================================*/
 
 
+
+
+
+
     /*=======================================+Sets up game scenes+=============================================*/
-    private void makeStory()
+    private static void makeStory()
     {
         elementManager.allScenes.Add(
             "Master's Room",
@@ -68,11 +72,11 @@ public class gameModel
     /*=======================================-Sets up game scenes-=============================================*/
 
     /*=======================================+Runs makeStory on start up+=============================================*/
-    public gameModel()
+   /* public static gameModel()
     {
         makeStory();
     }
-
+    */
     /*=======================================-Runs makeStory on start up-=============================================*/
 
 

@@ -56,8 +56,8 @@ public class informationDisplay : MonoBehaviour
          * Loads the next scene.
          */
 
-        GameManager.instance.gameModel.playerCharacter = new character();
-        GameManager.instance.gameModel.playerCharacter.Name = inputName.text;
+        gameModel.playerCharacter = new character();
+        gameModel.playerCharacter.Name = inputName.text;
         SceneManager.LoadScene("game");
 
     }

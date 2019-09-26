@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private bool gameRunning;
 
-    public gameModel gameModel;
+    //public gameModel gameModel;
     /*===============================-Creates instances of the important game classes-=========================*/
 
 
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
             instance = this;
             gameRunning = true;
             Debug.Log("Game has started");
-            gameModel = new gameModel();
+           // gameModel = new gameModel();
 
         }
         else

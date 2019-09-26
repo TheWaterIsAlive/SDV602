@@ -56,7 +56,7 @@ public class commandMap : MonoBehaviour
             lcCommand.perform(pAryCommandParts);
             lcResult = true;
 
-            Result = GameManager.instance.gameModel.currentScene.fullScene;
+            Result = gameModel.currentScene.fullScene;
 
 
 
@@ -65,7 +65,7 @@ public class commandMap : MonoBehaviour
         else
         {
             Debug.Log("I do not understand");
-            Result = GameManager.instance.gameModel.currentScene.fullScene;
+            Result = gameModel.currentScene.fullScene;
             lcResult = false;
         }
 
