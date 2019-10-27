@@ -3,30 +3,15 @@ using System.Collections;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-public class persist : MonoBehaviour
+public static class persist
 {
-    public static persist control;
 
-    void Start()
-    {
 
-    }
+    
 
-    void Awake()
-    {
-        if (control == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            control = this;
-        }
-        else if (control != this)
-        {
-            Destroy(gameObject);
-        }
+ 
 
-    }
-
-    public void Save()
+    public static void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
@@ -37,7 +22,7 @@ public class persist : MonoBehaviour
         file.Close();
     }
 
-    public void Load()
+    public static void Load()
     {
         if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
         {

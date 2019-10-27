@@ -30,7 +30,7 @@ public class commandProcessor
 
             
             if (_commandMap.runCommand(_formatedCommand, splitCommand))
-            {
+            { 
                 _result = _commandMap.Result;
             }
             else

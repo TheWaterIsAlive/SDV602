@@ -19,10 +19,9 @@ public class ScreenChange : MonoBehaviour
 
     public void loadGame() {
 
-        if (persist.control != null)
-        {
-            persist.control.Load();
-        }
+        
+            persist.Load();
+     
         SceneManager.LoadScene("game");
 
 

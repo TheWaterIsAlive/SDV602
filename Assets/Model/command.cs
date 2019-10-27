@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class command : MonoBehaviour
+public class command
 {
 
     //protected command next;
@@ -138,9 +138,9 @@ public class MenuCommand : command
 
             case "save":
 
-                if (persist.control != null) { 
-                persist.control.Save();
-                }
+              
+                persist.Save();
+             
                 break;
         }
 
