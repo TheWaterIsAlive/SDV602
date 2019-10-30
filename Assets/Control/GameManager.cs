@@ -12,10 +12,12 @@ public class GameManager : MonoBehaviour
      * of the GameManger we will have consistency
      * between screens
      */
-
+    public static DataService databaseServices = new DataService("handsOfTheMaster.db");
 
 
     private bool gameRunning;
+
+
 
     public gameModel gameModel;
     /*===============================-Creates instances of the important game classes-=========================*/
@@ -30,6 +32,15 @@ public class GameManager : MonoBehaviour
      * else Destroy any un-need gameObjects
      */
 
+    private void Start()
+    {
+
+        databaseServices.CreateDB(new[] {
+            typeof(user),
+           
+
+    });
+    }
 
 
     void Awake()
