@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.Model;
+using Assets.Model.SQL;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,14 +14,17 @@ public class GameManager : MonoBehaviour
      * of the GameManger we will have consistency
      * between screens
      */
-    public static DataService databaseServices = new DataService("handsOfTheMaster.db");
-
+    private DataService _databaseServices = new DataService("handsOfTheMaster.db");
+   
 
     private bool gameRunning;
 
 
 
     public gameModel gameModel;
+
+    public DataService DatabaseServices { get => _databaseServices; set => _databaseServices = value; }
+
     /*===============================-Creates instances of the important game classes-=========================*/
 
 
@@ -35,9 +40,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
 
-        databaseServices.CreateDB(new[] {
+        _databaseServices.CreateDB(new[] {
             typeof(user),
-           
+            typeof(sqlCharacter),
+           typeof(sqlMyMap),
+            typeof(sqlMapGrid),
+             typeof(sqlScenes),
 
     });
     }
@@ -51,6 +59,7 @@ public class GameManager : MonoBehaviour
             gameRunning = true;
             Debug.Log("Game has started");
             gameModel = new gameModel();
+
 
         }
         else

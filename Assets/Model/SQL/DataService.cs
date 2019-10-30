@@ -4,13 +4,17 @@ using UnityEngine;
 using System.Collections;
 using System.IO;
 #endif
+using System.Linq;
+using System;
 using System.Collections.Generic;
 
 public class DataService  {
 
 	private SQLiteConnection _connection;
 
-	public DataService(string DatabaseName){
+    public SQLiteConnection Connection { get => _connection; set => _connection = value; }
+
+    public DataService(string DatabaseName){
 
 #if UNITY_EDITOR
             var dbPath = string.Format(@"Assets/StreamingAssets/{0}", DatabaseName);
@@ -64,9 +68,9 @@ public class DataService  {
 
 	}
 
-	public void CreateDB(System.Type[] type)
+	public void CreateDB(System.Type[] pTableTypes)
     {
-		_connection.DropTable<user> ();
+        /*_connection.DropTable<user> ();
 		_connection.CreateTable<user> ();
 
 		_connection.InsertAll (new[]{
@@ -87,9 +91,18 @@ public class DataService  {
                 Password = "Password4"
             },
         });
-	}
+        */
+        // Gnarly (using Linq) lambda trick in place of a loop, build the "Where"s then execute with a ToList, 
+        var createList = pTableTypes.Where<System.Type>(x =>
+        {
+            _connection.CreateTable(x);
+            return true;
+        }
+            ).ToList();
 
-	public IEnumerable<user> GetUser(){
+    }
+
+    public IEnumerable<user> GetUser(){
 		return _connection.Table<user>();
 	}
 

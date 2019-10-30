@@ -706,7 +706,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 943844774}
-        m_MethodName: loadGame
+        m_MethodName: loadCharacter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -835,7 +835,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 943844774}
-        m_MethodName: ChangeScene
+        m_MethodName: newCharacter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
