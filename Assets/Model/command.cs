@@ -1,5 +1,6 @@
 ﻿
 //using Assets.Scripts;
+using Assets.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,6 +42,8 @@ public class MoveCommand : command
         Debug.Log("Moving" + adverb);
         splitCommand = pSplitCommand;
         scene lcScene = GameManager.instance.gameModel.currentScene;
+
+     //   mapManager.GetRetrieveCurrentMap();
         /* -Loads required varables- */
 
                  /*
@@ -59,11 +62,17 @@ public class MoveCommand : command
             /* +Code for move north+ */
             case "north":
                 lcScene = GameManager.instance.gameModel.currentScene;
-                if (lcScene.North != "Empty")
+                if (mapManager.findNorth(mapManager.getCurrentMap()) != "Empty") {
+
+                    mapManager.currentY = mapManager.currentY + 1;
+
+                }
+                    /*
                     if (lcScene.SceneType == "area")
                     {
                         GameManager.instance.gameModel.currentScene = elementManager.allScenes[lcScene.North];
                     }
+                    */
                 break;
 
             /* -Code for move north- */

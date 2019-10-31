@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Model.SQL
 {
-    class sqlMyMap
+   public class sqlMyMap
     {
 
 

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Assets.Model;
+
 public class textInput : MonoBehaviour
 {
     InputField input;
@@ -10,7 +12,7 @@ public class textInput : MonoBehaviour
     //public string commandType = "game";
 
     // Use this for initialization
-
+    public 
 
     /*=====================+Sets up current text interface+========================*/
     void Start()
@@ -21,7 +23,7 @@ public class textInput : MonoBehaviour
         input.onEndEdit = submitEvent;
         if (output != null)
         {
-            output.text = GameManager.instance.gameModel.currentScene.fullScene;
+            output.text = mapManager.SqlStory;
         }
     }
     /*=====================-Sets up current text interface-========================*/
