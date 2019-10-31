@@ -40,14 +40,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
 
-        _databaseServices.CreateDB(new[] {
-            typeof(user),
-            typeof(sqlCharacter),
-           typeof(sqlMyMap),
-            typeof(sqlMapGrid),
-             typeof(sqlScenes),
-
-    });
+        
     }
 
 
@@ -55,6 +48,17 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null)
         {
+
+
+
+            _databaseServices.CreateDB(new[] {
+            typeof(user),
+            typeof(sqlCharacter),
+           typeof(sqlMyMap),
+            typeof(sqlMapGrid),
+             typeof(sqlScenes),
+
+    });
             instance = this;
             gameRunning = true;
             Debug.Log("Game has started");

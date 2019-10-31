@@ -109,7 +109,9 @@ public class gameModel
 
         currentScene = elementManager.allScenes[sceneCode];
 
-        GameManager.instance.DatabaseServices.Connection.InsertAll(defaultScenes);
+        //GameManager.instance.DatabaseServices.Connection.InsertAll(defaultScenes);
+        GameManager.instance.DatabaseServices.Connection.InsertOrReplace(defaultScenes[0]);
+        GameManager.instance.DatabaseServices.Connection.InsertOrReplace(defaultScenes[1]);
     }
 
 
