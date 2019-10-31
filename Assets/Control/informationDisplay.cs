@@ -95,6 +95,8 @@ public class informationDisplay : MonoBehaviour
             inputVice.options[inputVice.value].text);
 
 
+     
+
         SceneManager.LoadScene("game");
 
 

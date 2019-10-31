@@ -6,24 +6,41 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
-
+   
     /*===============================+Creates instances of the important game classes+=========================*/
     public static GameManager instance;
+   
     /* 
      * Beccause there is only one instance
      * of the GameManger we will have consistency
      * between screens
      */
+
+
     private DataService _databaseServices = new DataService("handsOfTheMaster.db");
-   
+    public DataService DatabaseServices { get => _databaseServices; set => _databaseServices = value; }
 
     private bool gameRunning;
 
+    private void Start()
+    {
+        _databaseServices.CreateDB(new[] {
+           typeof(user),
+           typeof(sqlCharacter),
+           /*
+           typeof(sqlMyMap),
+           typeof(sqlMapGrid),
+           typeof(sqlScenes),
+           */
 
+    });
+
+        Debug.Log("Start");
+    }
 
     public gameModel gameModel;
 
-    public DataService DatabaseServices { get => _databaseServices; set => _databaseServices = value; }
+    
 
     /*===============================-Creates instances of the important game classes-=========================*/
 
@@ -37,18 +54,7 @@ public class GameManager : MonoBehaviour
      * else Destroy any un-need gameObjects
      */
 
-    private void Start()
-    {
-
-        _databaseServices.CreateDB(new[] {
-            typeof(user),
-            typeof(sqlCharacter),
-           typeof(sqlMyMap),
-            typeof(sqlMapGrid),
-             typeof(sqlScenes),
-
-    });
-    }
+  
 
 
     void Awake()
@@ -59,12 +65,13 @@ public class GameManager : MonoBehaviour
             gameRunning = true;
             Debug.Log("Game has started");
             gameModel = new gameModel();
-
+            Debug.Log("Awake If");
 
         }
         else
         {
             Destroy(gameObject);
+            Debug.Log("Else If");
         }
 
     }
@@ -75,13 +82,16 @@ public class GameManager : MonoBehaviour
     public bool isGameRunning()
     {
         return gameRunning;
+        Debug.Log("gameRuninng");
     }
     /*======================================-Check if game is running-===================================*/
 
     /*======================================+Change Scene to game+===================================*/
     public void changeScene()
     {
+        Debug.Log("Before Game load");
         SceneManager.LoadScene("game");
+
 
     }
     /*======================================-Change Scene to game-===================================*/

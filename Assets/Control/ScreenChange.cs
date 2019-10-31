@@ -19,10 +19,10 @@ public class ScreenChange : MonoBehaviour
 
     public void newCharacter() {
 
+        //mapManager.makeNewMap();
 
-       
-            ChangeScene("creation");
-             
+        ChangeScene("creation");
+     
           
         
              

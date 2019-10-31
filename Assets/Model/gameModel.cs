@@ -12,14 +12,14 @@ public class gameModel
     public scene currentScene;
     public string sceneCode = "Master's Room";
     public character playerCharacter;
-    private List<sqlScenes> defaultScenes = new List<sqlScenes>();
+   private List<sqlScenes> defaultScenes = new List<sqlScenes>();
     /*=======================================-Stores Objects related to game state-=============================================*/
 
 
     /*=======================================+Sets up game scenes+=============================================*/
     private void makeStory()
     {
-
+        Debug.Log("Start Make Story");
 
         sqlScenes mastersRoom = new sqlScenes {
 
@@ -39,7 +39,7 @@ public class gameModel
         
             defaultScenes.Add(mastersRoom);
         
-
+        
         elementManager.allScenes.Add(
             "Master's Room",
             new scene(
@@ -81,7 +81,7 @@ public class gameModel
 
         defaultScenes.Add(glowingPool);
 
-
+      
         elementManager.allScenes.Add(
            "Empty",
            new scene("You should not be here",
@@ -109,7 +109,8 @@ public class gameModel
 
         currentScene = elementManager.allScenes[sceneCode];
 
-        GameManager.instance.DatabaseServices.Connection.InsertAll(defaultScenes);
+     GameManager.instance.DatabaseServices.Connection.InsertAll(defaultScenes);
+        Debug.Log("End Make Story");
     }
 
 
@@ -118,7 +119,9 @@ public class gameModel
     /*=======================================+Runs makeStory on start up+=============================================*/
     public gameModel()
     {
+        Debug.Log("Call make story");
         makeStory();
+        Debug.Log("end call make story");
     }
 
     /*=======================================-Runs makeStory on start up-=============================================*/

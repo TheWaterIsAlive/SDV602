@@ -1325,7 +1325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b0fedd699a55d54e82fb8e658c62310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetScene: creation
 --- !u!114 &2079491106
 MonoBehaviour:
   m_ObjectHideFlags: 0
