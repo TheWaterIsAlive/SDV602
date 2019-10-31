@@ -14,7 +14,7 @@ namespace Assets.Model.SQL
         [PrimaryKey, AutoIncrement]
         public int spaceID { get; set; }
         [NotNull]
-        public int mapName { get; set; }
+        public int mapID { get; set; }
         public string sceneName { get; set; }
         public int xPosition { get; set; }
 
