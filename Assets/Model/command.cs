@@ -61,10 +61,14 @@ public class MoveCommand : command
 
             /* +Code for move north+ */
             case "north":
-                lcScene = GameManager.instance.gameModel.currentScene;
-                if (mapManager.findNorth(mapManager.getCurrentMap()) != "Empty") {
+                //lcScene = GameManager.instance.gameModel.currentScene;
+                if (mapManager.findNorth(mapManager.getCurrentMap()) != "empty") {
 
                     mapManager.currentY = mapManager.currentY + 1;
+                    Debug.Log(mapManager.findNorth(mapManager.getCurrentMap()));
+                    Debug.Log(mapManager.findSouth(mapManager.getCurrentMap()));
+                    Debug.Log(mapManager.findEast(mapManager.getCurrentMap()));
+                    Debug.Log(mapManager.findWest(mapManager.getCurrentMap()));
 
                 }
                     /*
@@ -78,6 +82,7 @@ public class MoveCommand : command
             /* -Code for move north- */
             /* +Code for move south+ */
             case "south":
+                /*
                 lcScene = GameManager.instance.gameModel.currentScene;
                 if (lcScene.South != "Empty")
                     if (lcScene.SceneType == "area")
@@ -85,28 +90,55 @@ public class MoveCommand : command
                         GameManager.instance.gameModel.currentScene = elementManager.allScenes[lcScene.South];
                     }
                 break;
+                */
+                if (mapManager.findSouth(mapManager.getCurrentMap()) != "empty")
+                {
+
+                    mapManager.currentY = mapManager.currentY - 1;
+
+                }
+                break;
             /* -Code for move south- */
             /* +Code for move west+ */
             case "west":
+                /*
                 lcScene = GameManager.instance.gameModel.currentScene;
                 if (lcScene.West != "Empty")
                     if (lcScene.SceneType == "area")
                     {
                         GameManager.instance.gameModel.currentScene = elementManager.allScenes[lcScene.West];
                     }
+                    */
+                
+                if (mapManager.findWest(mapManager.getCurrentMap()) != "empty")
+                {
+
+                    mapManager.currentX = mapManager.currentX - 1;
+
+                }
                 break;
             /* -Code for move west- */
             /* +Code for move east+ */
             case "east":
+                /*
                 lcScene = GameManager.instance.gameModel.currentScene;
                 if (lcScene.East != "Empty")
                     if (lcScene.SceneType == "area")
                     {
                         GameManager.instance.gameModel.currentScene = elementManager.allScenes[lcScene.East];
                     }
+                    */
+                
+                if (mapManager.findEast(mapManager.getCurrentMap()) != "empty")
+                {
+
+                    mapManager.currentX = mapManager.currentX + 1;
+
+                }
                 break;
                 /* -Code for move east- */
 
+                
         }
 
     }

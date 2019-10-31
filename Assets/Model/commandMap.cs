@@ -1,4 +1,5 @@
 ﻿
+using Assets.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,7 +57,7 @@ public class commandMap
             lcCommand.perform(pAryCommandParts);
             lcResult = true;
 
-            Result = GameManager.instance.gameModel.currentScene.fullScene;
+            Result = mapManager.SqlStory;
 
 
 
@@ -65,7 +66,7 @@ public class commandMap
         else
         {
             Debug.Log("I do not understand");
-            Result = GameManager.instance.gameModel.currentScene.fullScene;
+            Result = mapManager.SqlStory;
             lcResult = false;
         }
 

@@ -154,7 +154,7 @@ namespace Assets.Model
             try
             {
 
-                sqlMapGrid lcSouthScene = lcCurrentMap.Where(x => x.xPosition == currentX && x.yPosition == currentY + 1).FirstOrDefault();
+                sqlMapGrid lcSouthScene = lcCurrentMap.Where(x => x.xPosition == currentX && x.yPosition == currentY - 1).FirstOrDefault();
 
                 String lcSouthText = GameManager.instance.DatabaseServices.Connection.Table<sqlScenes>().Where(
                         x => x.sceneName == lcSouthScene.sceneName
@@ -175,7 +175,7 @@ namespace Assets.Model
             try
             {
 
-                sqlMapGrid lcNorthScene = lcCurrentMap.Where(x => x.xPosition == currentX && x.yPosition == currentY - 1).FirstOrDefault();
+                sqlMapGrid lcNorthScene = lcCurrentMap.Where(x => x.xPosition == currentX && x.yPosition == currentY + 1).FirstOrDefault();
 
 
                 String lcNorthText = GameManager.instance.DatabaseServices.Connection.Table<sqlScenes>().Where(
