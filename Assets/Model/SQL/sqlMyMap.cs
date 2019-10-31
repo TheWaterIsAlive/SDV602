@@ -16,7 +16,7 @@ namespace Assets.Model.SQL
         [NotNull]
         public int characterID { get; set; }
 
-        public int gridID { get; set; }
+       // public int gridID { get; set; }
 
 
 

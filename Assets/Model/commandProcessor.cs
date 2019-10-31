@@ -6,6 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 using System.IO;
+using Assets.Model;
+
 public class commandProcessor
 {
     public commandProcessor()
@@ -34,11 +36,11 @@ public class commandProcessor
                 _result = _commandMap.Result;
             }
             else
-                _result = GameManager.instance.gameModel.currentScene.fullScene + "\n" + _result;
+                _result = mapManager.SqlStory + "\n" + _result;
 
         }
         else
-            _result = GameManager.instance.gameModel.currentScene.fullScene + "\n" + _result;
+            _result = mapManager.SqlStory + "\n" + _result;
 
 
         return _result;

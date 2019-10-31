@@ -68,6 +68,8 @@ namespace Assets.Model
                 };
                 GameManager.instance.DatabaseServices.Connection.Insert(lcNewCharacter);
                 _character = lcNewCharacter;
+
+                mapManager.makeNewMap(_character.Id);
                 // sqlCharacter thisCharacter = lcCharacter[0];
 
 

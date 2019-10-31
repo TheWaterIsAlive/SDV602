@@ -61,7 +61,7 @@ public class MoveCommand : command
 
             /* +Code for move north+ */
             case "north":
-                lcScene = GameManager.instance.gameModel.currentScene;
+                //lcScene = GameManager.instance.gameModel.currentScene;
                 if (mapManager.findNorth(mapManager.getCurrentMap()) != "Empty") {
 
                     mapManager.currentY = mapManager.currentY + 1;

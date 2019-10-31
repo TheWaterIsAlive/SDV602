@@ -94,7 +94,7 @@ public class informationDisplay : MonoBehaviour
             inputWeakness.options[inputWeakness.value].text,
             inputVice.options[inputVice.value].text);
 
-        mapManager.makeNewMap();
+        //mapManager.makeNewMap();
 
         SceneManager.LoadScene("game");
 

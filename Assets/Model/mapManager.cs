@@ -13,51 +13,108 @@ namespace Assets.Model
         public static sqlMyMap currentMap;
         public static int currentX;
         public static int currentY;
-
+        private static sqlMapGrid firstSpace;
+        private static sqlMapGrid secondSpace;
         // internal static sqlMyMap CurrentMap { get => currentMap; set => currentMap = value; }
 
-        public static void makeNewMap()
+        public static void makeNewMap(int pCharacterID)
         {
 
 
+            List<sqlMyMap> lcMyMap = GameManager.instance.DatabaseServices.Connection.Table<sqlMyMap>().Where(
+                x => x.characterID == pCharacterID).ToList<sqlMyMap>();
 
-
-
-            var lcNewMap = new sqlMyMap
+            firstSpace = new sqlMapGrid
             {
-                characterID = characterManager.Character.Id,
-                gridID = (GameManager.instance.DatabaseServices.Connection.Table<sqlMapGrid>(
-                       ).ToList<sqlMapGrid>().Count()) + 1
-
-            };
-
-
-            GameManager.instance.DatabaseServices.Connection.Insert(lcNewMap);
-            currentMap = lcNewMap;
-
-
-            var lcFirstSpace = new sqlMapGrid
-            {
-                mapID = currentMap.mapID,
+                mapID = pCharacterID,
                 sceneName = "Master's Room",
                 xPosition = 3,
                 yPosition = 1,
 
             };
-            GameManager.instance.DatabaseServices.Connection.Insert(lcFirstSpace);
 
-            var lcSecondSpace = new sqlMapGrid
+
+            secondSpace = new sqlMapGrid
             {
-                mapID = currentMap.mapID,
+                mapID = pCharacterID,
                 sceneName = "Glowing Pool",
                 xPosition = 3,
                 yPosition = 2,
 
             };
-            GameManager.instance.DatabaseServices.Connection.Insert(lcSecondSpace);
+
+            bool result = lcMyMap.Count > 0;
+            if (!result)
+            {
+
+                var lcNewMap = new sqlMyMap
+                {
+                    characterID = pCharacterID,
+
+
+                };
+                GameManager.instance.DatabaseServices.Connection.Insert(lcNewMap);
+                currentMap = lcNewMap;
+
+               
+                GameManager.instance.DatabaseServices.Connection.Insert(firstSpace);
+                GameManager.instance.DatabaseServices.Connection.Insert(secondSpace);
+
+            }
+            else
+            {
+                currentMap = lcMyMap.FirstOrDefault();
+
+
+                List<sqlMapGrid> lcMyGrid = GameManager.instance.DatabaseServices.Connection.Table<sqlMapGrid>().Where(
+                x => x.mapID == currentMap.mapID).ToList<sqlMapGrid>();
+
+
+                lcMyGrid.ForEach(grid => grid.mapID = currentMap.mapID);
+                List<sqlMapGrid> space1 = lcMyGrid.Where(grid => grid.xPosition == 3 && grid.yPosition == 1).ToList();
+                bool space1Exist = lcMyGrid.Count > 0;
+                if (!space1Exist)
+                {
+                    GameManager.instance.DatabaseServices.Connection.Insert(firstSpace);
+
+                }
+
+
+                List<sqlMapGrid> space2 = lcMyGrid.Where(grid => grid.xPosition == 3 && grid.yPosition == 2).ToList();
+                bool space2Exist = lcMyGrid.Count > 0;
+                if (!space2Exist)
+                {
+                    GameManager.instance.DatabaseServices.Connection.Insert(secondSpace);
+
+                }
+
+
+                /*
+               sqlMapGrid space1 = lcMyGrid.Where(grid => grid.xPosition == 3 && grid.yPosition == 1).FirstOrDefault();
+               sqlMapGrid space2 = lcMyGrid.Where(grid => grid.xPosition == 3 && grid.yPosition == 2).FirstOrDefault();
+                space1.mapID = currentMap.mapID;
+                space1.sceneName = "Master's Room";
+                space2.mapID = currentMap.mapID;
+                space2.sceneName = "Glowing Pool";
+                */
+
+
+
+
+            }
+
+           
+        
+
+
+          
 
             currentX = 3;
             currentY = 1;
+        }
+
+        public static void loadMap()
+        {
         }
 
 
@@ -91,7 +148,7 @@ namespace Assets.Model
         {
             List<sqlMapGrid> lcCurrentMap = GameManager.instance.DatabaseServices.Connection.Table<sqlMapGrid>().Where(
                 x => x.mapID == currentMap.mapID).ToList<sqlMapGrid>();
-            Debug.Log(lcCurrentMap.FirstOrDefault().sceneName);
+           // Debug.Log(lcCurrentMap.FirstOrDefault().sceneName);
             return lcCurrentMap;
         }
 
