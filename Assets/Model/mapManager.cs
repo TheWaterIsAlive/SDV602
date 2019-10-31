@@ -14,6 +14,7 @@ namespace Assets.Model
         public static int currentX;
         public static int currentY;
 
+        public static List<sqlMapGrid> defaultSpace = new List<sqlMapGrid>();
         // internal static sqlMyMap CurrentMap { get => currentMap; set => currentMap = value; }
 
         public static void makeNewMap()
@@ -21,21 +22,40 @@ namespace Assets.Model
 
 
 
+            List<sqlMyMap> lcMap = GameManager.instance.DatabaseServices.Connection.Table<sqlMyMap>().Where(x =>
+            x.characterID == userManager.CurrentUser.Username).ToList();
 
 
-            var lcNewMap = new sqlMyMap
+            bool mapExist = lcMap.Count() > 0;
+            if (!mapExist)
             {
-                characterID = characterManager.Character.Id,
-                gridID = (GameManager.instance.DatabaseServices.Connection.Table<sqlMapGrid>(
-                       ).ToList<sqlMapGrid>().Count()) + 1
-
-            };
+                var lcNewMap = new sqlMyMap
+                {
+                    characterID = characterManager.Character.characterName,
 
 
-            GameManager.instance.DatabaseServices.Connection.Insert(lcNewMap);
-            currentMap = lcNewMap;
+                };
 
 
+
+                GameManager.instance.DatabaseServices.Connection.Insert(lcNewMap);
+                currentMap = lcNewMap;
+
+            }
+            else {
+                //currentMap = GameManager.instance.DatabaseServices.Connection.Table<sqlMyMap>().Where(x =>
+                //  x.characterID == userManager.CurrentUser.Username).ToList().FirstOrDefault();
+                Debug.Log(currentMap);
+                Debug.Log(GameManager.instance.DatabaseServices.Connection.Table<sqlMyMap>().Where(x =>
+                x.characterID == userManager.CurrentUser.Username).FirstOrDefault());
+                Debug.Log(userManager.CurrentUser.Username);
+
+                currentMap = GameManager.instance.DatabaseServices.Connection.Table<sqlMyMap>().Where(x =>
+                x.characterID == userManager.CurrentUser.Username).FirstOrDefault();
+            }
+
+
+           
             var lcFirstSpace = new sqlMapGrid
             {
                 mapID = currentMap.mapID,
@@ -44,7 +64,8 @@ namespace Assets.Model
                 yPosition = 1,
 
             };
-            GameManager.instance.DatabaseServices.Connection.Insert(lcFirstSpace);
+            
+           // GameManager.instance.DatabaseServices.Connection.InsertOrReplace(lcFirstSpace);
 
             var lcSecondSpace = new sqlMapGrid
             {
@@ -54,8 +75,25 @@ namespace Assets.Model
                 yPosition = 2,
 
             };
-            GameManager.instance.DatabaseServices.Connection.Insert(lcSecondSpace);
+            //GameManager.instance.DatabaseServices.Connection.InsertOrReplace(lcSecondSpace);
+            List<sqlMapGrid> lcCheckExists = GameManager.instance.DatabaseServices.Connection.Table<sqlMapGrid>().Where(
+                Grid => Grid.mapID == currentMap.mapID).ToList();
+            if (lcCheckExists.Where(Grid => Grid.sceneName == "Master's Room").Count() > 0)
+            { }
+            else {
+                defaultSpace.Add(lcFirstSpace);
 
+            }
+            if (lcCheckExists.Where(Grid => Grid.sceneName == "Glowing Pool").Count() > 0)
+            { }
+            else
+            {
+                defaultSpace.Add(lcSecondSpace);
+
+            }
+
+            
+            GameManager.instance.DatabaseServices.Connection.InsertAll(defaultSpace);
             currentX = 3;
             currentY = 1;
         }
