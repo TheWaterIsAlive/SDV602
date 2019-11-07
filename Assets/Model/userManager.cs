@@ -1,23 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Model
 {
     public static class userManager
     {
-
+        /*================================+ Varables +=================================*/
        private static user _currentUser;
-     //   private static sqlCharacter _currentCharacter;
+   
 
         public static user CurrentUser { get => _currentUser; set => _currentUser = value; }
-       // public static sqlCharacter CurrentCharacter { get => _currentCharacter; set => _currentCharacter = value; }
+        /*================================- Varables -=================================*/
 
+     /*===========================+Create New User+======================*/
         public static void RegisterPlayer(string pUserName, string pPassword)
         {
+
+            /*
+             * Get Relenvent People from the database.
+             * Check that the user doesn't already exist.
+             * Check both a password and Username were entered.
+             * Create and add to database new user.
+             * Move to log in.
+             * 
+             */
+
             List<user> lcUsers = GameManager.instance.DatabaseServices.Connection.Table<user>().Where<user>(
                               x => x.Username == pUserName
                          ).ToList<user>();
@@ -41,7 +49,8 @@ namespace Assets.Model
 
         }
 
-
+        /*===========================-Create New User-======================*/
+        /*===========================+Log In+======================*/
         public static void LogIn(string pUserName, string pPassword)
         {
 
@@ -53,31 +62,19 @@ namespace Assets.Model
             if (!result)
             {
                 _currentUser = null;
-              //  _currentCharacter = null;
+             
             }
 
             else
             {
 
-              /*  List<sqlCharacter> lcCharacter = GameManager.instance.DatabaseServices.Connection.Table<sqlCharacter>().Where<sqlCharacter>(
-                             x => x.playerName == pUserName
-                        ).ToList<sqlCharacter>();
-                bool resultCharacter = lcUsers.Count > 0;
-                if (!resultCharacter)
-                {
-
-                    _currentCharacter = null;
-                }
-                else {
-                    _currentCharacter = lcCharacter.First<sqlCharacter>();
-
-                }
-                   */
+          
                 _currentUser = lcUsers.First<user>();
                 SceneManager.LoadScene("main");
             }
 
         }
+        /*===========================-Log In-======================*/
 
     }
 }

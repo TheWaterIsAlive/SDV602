@@ -1,9 +1,6 @@
 ﻿
-//using Assets.Scripts;
 using Assets.Model.SQL;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 
 public class gameModel
@@ -20,7 +17,6 @@ public class gameModel
     private void makeStory()
     {
 
-
         sqlScenes mastersRoom = new sqlScenes {
 
           sceneName = "Master's Room",
@@ -34,33 +30,9 @@ public class gameModel
 
 
 };
-
-
-        
             defaultScenes.Add(mastersRoom);
-        
-
-        elementManager.allScenes.Add(
-            "Master's Room",
-            new scene(
-                "You enter a drab room. On an old dusty crate sits" +
-                " an old man wearing a mangy robe which drapes off his " +
-                "arms, highlighting the fact that this man doesn't have any hands" +
-                ". This is the man you know to be The Master. What do you do?",
-                "is a swirling portal."));
-
-        
-
-        elementManager.allScenes.Add(
-            "Glowing Pool",
-            new scene(
-                "You enter into a large cavern with crystalline walls." +
-                " The faintest gleam of light manages to shimmer through the tarnished crystal surfaces. " +
-                "A large pillar rises from the centre of the room, on top of which sits a smiling imp. " +
-                "A pool of glowing liquid shimmers ominously to the west. What do you do?",
-                "a glass surface covered in strange mist"));
-
-
+       
+     
 
         sqlScenes glowingPool = new sqlScenes
         {
@@ -81,37 +53,45 @@ public class gameModel
 
         defaultScenes.Add(glowingPool);
 
+        sqlScenes fancyHouse = new sqlScenes
+        {
 
-        elementManager.allScenes.Add(
-           "Empty",
-           new scene("You should not be here",
-               "The world stretches infinitely in this direction."
-               ));
+            sceneName = "Fancy House",
 
-        elementManager.allScenes.Add(
-            "Stone Guard",
-            new scene(
-                "No! Banned!",
-                "a Stone Guard stands."));
+            sceneDiscription = "You sit in a well ferbised house, surounded by soft," +
+            " why would you want to leave?",
+            adjasentText = "a nice house.",
+            obstricalFrame = "gaurds."
 
 
+        };
 
-        elementManager.allScenes["Stone Guard"].SceneType = "obstacle";
-        elementManager.allScenes["Master's Room"].North = "Glowing Pool";
-        elementManager.allScenes["Glowing Pool"].South = "Stone Guard";
-        elementManager.allScenes["Stone Guard"].North = "Glowing Pool";
-        elementManager.allScenes["Stone Guard"].South = "Master's Room";
 
-        // firstScene = "Masters Room";
-        //firstScene = new Area("You enter a drab room. A mirror full of swelling energy sits at your back.On an old dusty crate sits an old man wearing a mangy rob which draps ofhis arm highlighting the fact that this man doesn't have any hands. This is the man you know to be The Master.What do you do? ");
-        //firstScene.North = "Glowing Pool";
-        //firstScene.North.South = firstScene;
 
-        currentScene = elementManager.allScenes[sceneCode];
+        defaultScenes.Add(fancyHouse);
 
-        //GameManager.instance.DatabaseServices.Connection.InsertAll(defaultScenes);
+        sqlScenes bigTree = new sqlScenes
+        {
+
+            sceneName = "Big Tree",
+
+            sceneDiscription = "You can't see the top of this tree, it's so tall.",
+            adjasentText = "a tree which strangles the skyline.",
+            obstricalFrame = "climbs from."
+
+
+        };
+
+
+
+        defaultScenes.Add(bigTree);
+
+
+
         GameManager.instance.DatabaseServices.Connection.InsertOrReplace(defaultScenes[0]);
         GameManager.instance.DatabaseServices.Connection.InsertOrReplace(defaultScenes[1]);
+        GameManager.instance.DatabaseServices.Connection.InsertOrReplace(defaultScenes[2]);
+        GameManager.instance.DatabaseServices.Connection.InsertOrReplace(defaultScenes[3]);
     }
 
 

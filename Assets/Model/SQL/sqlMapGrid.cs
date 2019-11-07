@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace Assets.Model.SQL
 {
+
+    /*
+     * SQL representaion of the spaces on a map
+     * Each Character show have an assoisate to a map class.
+     * 
+     * 
+     */
    public class sqlMapGrid
     {
 

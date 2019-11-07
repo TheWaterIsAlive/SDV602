@@ -14,16 +14,23 @@ public class GameManager : MonoBehaviour
      * of the GameManger we will have consistency
      * between screens
      */
+
+    /*================================+Data Service+==================================*/
+    /*
+     * Creates Connection to database called 'handsOfTheMaster'.
+     * 
+     */
     private DataService _databaseServices = new DataService("handsOfTheMaster.db");
-   
+    /*================================-Data Service-==================================*/
+
 
     private bool gameRunning;
-
-
-
     public gameModel gameModel;
 
-    public DataService DatabaseServices { get => _databaseServices; set => _databaseServices = value; }
+    public DataService DatabaseServices {
+        get => _databaseServices;
+        set => _databaseServices = value;
+    }
 
     /*===============================-Creates instances of the important game classes-=========================*/
 
@@ -37,28 +44,19 @@ public class GameManager : MonoBehaviour
      * else Destroy any un-need gameObjects
      */
 
-    private void Start()
-    {
-
-        
-    }
-
-
     void Awake()
     {
         if (instance == null)
         {
+          _databaseServices.CreateDB(new[] 
+          {
+               typeof(user),
+               typeof(sqlCharacter),
+               typeof(sqlMyMap),
+               typeof(sqlMapGrid),
+               typeof(sqlScenes),
 
-
-
-            _databaseServices.CreateDB(new[] {
-            typeof(user),
-            typeof(sqlCharacter),
-           typeof(sqlMyMap),
-            typeof(sqlMapGrid),
-             typeof(sqlScenes),
-
-    });
+          });
             instance = this;
             gameRunning = true;
             Debug.Log("Game has started");

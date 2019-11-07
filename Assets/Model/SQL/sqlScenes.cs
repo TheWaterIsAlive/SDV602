@@ -7,6 +7,15 @@ using System.Threading.Tasks;
 
 namespace Assets.Model.SQL
 {
+
+    /*
+     * Store an SQL exivalant to the origional scene class
+     * Scene Name is used as primary key.
+     * Screne Description is what is displayed when in a sence
+     * adjasentText TO give a preview of next scene
+     * obstricalFrame is to inprove grammar when obstricals are introduced
+     * 
+     */
     class sqlScenes
     {
 

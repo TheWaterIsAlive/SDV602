@@ -2,6 +2,13 @@
 
 public class user
 {
+    /*
+     * Basic user class
+     * Used to let people long in
+     * 
+     * 
+     */
+
 
     [PrimaryKey]
    

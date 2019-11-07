@@ -546,7 +546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b0fedd699a55d54e82fb8e658c62310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetScene: creation
 --- !u!1 &1032260631
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1035264086
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1348,12 +1347,12 @@ GameObject:
   - component: {fileID: 1675522089}
   - component: {fileID: 1675522088}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: PanelpnlCheats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1675522087
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1430,7 +1429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1803859411
 RectTransform:
   m_ObjectHideFlags: 0

@@ -1,44 +1,43 @@
-﻿using Assets.Model;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ScreenChange : MonoBehaviour
 {
-
-
-    /*++++++++++++++Place Holder Class++++++++++++++*/
-   // public string targetScene = "game";
+    /*==============================+Parse Sceen Name to change scene+=============================*/
     public void ChangeScene(string targetScene)
     {
         SceneManager.LoadScene(targetScene);
 
     }
 
-    /*--------------Place Holder Class-------------*/
+    /*==============================-Parse Sceen Name to change scene-=============================*/
 
+
+    /*==============================+Moves to the character creation screen+=============================*/
     public void newCharacter() {
 
-
-       
             ChangeScene("creation");
-             
-          
         
-             
-
-        //  GameManager.instance.DatabaseServices.Connection.Delete(userManager.CurrentCharacter);
-   
-       
-
-
     }
-
-
+    /*==============================-Moves to the character creation screen-=============================*/
+    /*
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * Future Code To load characters and maps.
     public void loadCharacter() {
 
 
-       // if (userManager.CurrentCharacter != null) {
+ 
+        characterManager.Character = GameManager.instance.DatabaseServices.Connection.Table<sqlCharacter>().Where(
+            x => x.playerName == userManager.CurrentUser.Username).FirstOrDefault();
+
+
+        mapManager.currentMap = GameManager.instance.DatabaseServices.Connection.Table<sqlMyMap>().Where(x
+            => x.characterID == characterManager.Character.characterName).FirstOrDefault();
+
 
             ChangeScene("game");
 
@@ -48,8 +47,8 @@ public class ScreenChange : MonoBehaviour
 
 
     }
-
-
+    */
+    /*==============================+Old Game load Funtion+=============================*/
     public void loadGame() {
 
         
@@ -60,5 +59,5 @@ public class ScreenChange : MonoBehaviour
 
     }
 
-
+    /*==============================-Old Game load Funtion-=============================*/
 }

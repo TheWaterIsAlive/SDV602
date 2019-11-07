@@ -1,8 +1,5 @@
 ﻿
-//using Assets.Scripts;
 using Assets.Model;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class command
@@ -41,17 +38,14 @@ public class MoveCommand : command
         /* +Loads required varables+ */
         Debug.Log("Moving" + adverb);
         splitCommand = pSplitCommand;
-        scene lcScene = GameManager.instance.gameModel.currentScene;
-
-     //   mapManager.GetRetrieveCurrentMap();
         /* -Loads required varables- */
 
                  /*
                   * 
                   * Switch statement for the four game directions.
-                  * The game loads the current scene.
+                  * If something exist in direction in current players map contuine.
                   * The game wont proceed if the target scene is an Empty scene and an area.
-                  * Changes currentScene to the approprate scene.
+                  * Changes currentScene to the approprate scene, this is done by moving on a grid
                   * 
                   */
 
@@ -61,36 +55,20 @@ public class MoveCommand : command
 
             /* +Code for move north+ */
             case "north":
-                //lcScene = GameManager.instance.gameModel.currentScene;
+               
                 if (mapManager.findNorth(mapManager.getCurrentMap()) != "empty") {
 
                     mapManager.currentY = mapManager.currentY + 1;
-                    Debug.Log(mapManager.findNorth(mapManager.getCurrentMap()));
-                    Debug.Log(mapManager.findSouth(mapManager.getCurrentMap()));
-                    Debug.Log(mapManager.findEast(mapManager.getCurrentMap()));
-                    Debug.Log(mapManager.findWest(mapManager.getCurrentMap()));
+                    
 
                 }
-                    /*
-                    if (lcScene.SceneType == "area")
-                    {
-                        GameManager.instance.gameModel.currentScene = elementManager.allScenes[lcScene.North];
-                    }
-                    */
+             
                 break;
 
             /* -Code for move north- */
             /* +Code for move south+ */
             case "south":
-                /*
-                lcScene = GameManager.instance.gameModel.currentScene;
-                if (lcScene.South != "Empty")
-                    if (lcScene.SceneType == "area")
-                    {
-                        GameManager.instance.gameModel.currentScene = elementManager.allScenes[lcScene.South];
-                    }
-                break;
-                */
+               
                 if (mapManager.findSouth(mapManager.getCurrentMap()) != "empty")
                 {
 
@@ -101,14 +79,7 @@ public class MoveCommand : command
             /* -Code for move south- */
             /* +Code for move west+ */
             case "west":
-                /*
-                lcScene = GameManager.instance.gameModel.currentScene;
-                if (lcScene.West != "Empty")
-                    if (lcScene.SceneType == "area")
-                    {
-                        GameManager.instance.gameModel.currentScene = elementManager.allScenes[lcScene.West];
-                    }
-                    */
+            
                 
                 if (mapManager.findWest(mapManager.getCurrentMap()) != "empty")
                 {
@@ -120,15 +91,7 @@ public class MoveCommand : command
             /* -Code for move west- */
             /* +Code for move east+ */
             case "east":
-                /*
-                lcScene = GameManager.instance.gameModel.currentScene;
-                if (lcScene.East != "Empty")
-                    if (lcScene.SceneType == "area")
-                    {
-                        GameManager.instance.gameModel.currentScene = elementManager.allScenes[lcScene.East];
-                    }
-                    */
-                
+            
                 if (mapManager.findEast(mapManager.getCurrentMap()) != "empty")
                 {
 
@@ -176,13 +139,14 @@ public class MenuCommand : command
                 SceneManager.LoadScene("sheet");
 
                 break;
-
+        /*    ====Outdated===
             case "save":
-
+            
               
                 persist.Save();
              
                 break;
+           */
         }
 
 

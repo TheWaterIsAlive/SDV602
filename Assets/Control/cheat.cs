@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*
+ * This class is from an early prototype and works with
+ * classes ratter than objects as such is not current in use.
+ * 
+ * 
+ * 
+ */
 public class cheat : MonoBehaviour
 {
     public InputField input;
@@ -25,6 +31,14 @@ public class cheat : MonoBehaviour
 
 
     /*=====================+Code for when a command is entered+========================*/
+    /*
+     * Kill Mode remove an enermy From the game before
+     * the game has started.
+     * 
+     * 
+     * howDoYouTurnThisOn changes the type of enermy encountered.
+     * 
+     */
     private void submitInput(string submittedInput)
     {
         string _currentText = output.text;

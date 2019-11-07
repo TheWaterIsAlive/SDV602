@@ -14,7 +14,7 @@ namespace Assets.Model.SQL
         [PrimaryKey, AutoIncrement]
         public int mapID { get; set; }
         [NotNull]
-        public int characterID { get; set; }
+        public String characterID { get; set; }
 
         public int gridID { get; set; }
 

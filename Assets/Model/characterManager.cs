@@ -1,16 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace Assets.Model
 {
-   public static class characterManager
+    /*
+     * This class holds the funtionality of character.
+     * As we are no longer using objects.
+     * This Lets us store all of the funtionality to do with character in one place
+     * 
+     */
+    public static class characterManager
     {
+        /*=======================================+Character Elements+=============================================*/
         private static sqlCharacter _character;
 
         public static sqlCharacter Character { get => _character; set => _character = value; }
+        /*=======================================-Character Elements-=============================================*/
+
+        /*=======================================+Creates New Character+=============================================*/
+        /*
+         * 
+         * Create Character takes all required inputs.
+         * Gets the character from the database Where user is current user
+         * If Character doesn't exist set values to default and store data.
+         * Else create and store new character.
+         * 
+         * 
+         */
 
         public static void createCharacter(string pName,
            string pAligment,
@@ -19,20 +34,11 @@ namespace Assets.Model
            string pWeakness,
            string pVice) {
 
-            /*
-                        List<sqlCharacter> lcCharacter = GameManager.instance.DatabaseServices.Connection.Table<sqlCharacter>().Where<sqlCharacter>(
-                      x => x.playerName == userManager.CurrentUser.Username).ToList<sqlCharacter>();
-
-
-                */
+          
             sqlCharacter lcCharacter = GameManager.instance.DatabaseServices.Connection.Table<sqlCharacter>().Where(
                           x => x.playerName == userManager.CurrentUser.Username
                           ).ToList<sqlCharacter>().FirstOrDefault<sqlCharacter>();
 
-
-
-
-            //    bool result = lcCharacter.Count > 0;
             if (lcCharacter != null)
             {
                 lcCharacter.characterName = pName;
@@ -45,7 +51,6 @@ namespace Assets.Model
                 lcCharacter.vice = pVice;
                 lcCharacter.playerName = userManager.CurrentUser.Username;
                 GameManager.instance.DatabaseServices.Connection.InsertOrReplace(lcCharacter);
-                // InsertOrReplace(thisCharacter);
                 _character = lcCharacter;
 
             }
@@ -75,11 +80,11 @@ namespace Assets.Model
             
         }
 
-
-
-    }
-
-
+        /*=======================================-Character Elements-=============================================*/
 
     }
+
+
+
+}
 

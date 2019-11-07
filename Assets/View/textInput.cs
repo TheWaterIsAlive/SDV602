@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Model;
+using UnityEngine;
 using UnityEngine.UI;
-using Assets.Model;
 
 public class textInput : MonoBehaviour
 {

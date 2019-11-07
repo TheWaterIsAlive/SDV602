@@ -10,6 +10,7 @@ public class informationDisplay : MonoBehaviour
 {
     /*======================================+Connects to screen inputs+===================================*/
     public Text inputName;
+    /*============+Feild for When Stats are introduced+===========*/
     /*
     public InputField inputMight;
     public InputField inputEndurance;
@@ -18,12 +19,25 @@ public class informationDisplay : MonoBehaviour
     public InputField inputSoul;
     public Text inputSkillPoints;
     */
+    /*============-Feild for When Stats are introduced-===========*/
+
+    /*==============+Feild To Hold Existing Dropdowns+============*/
     public Dropdown inputAlignment;
     public Dropdown inputBoon;
     public Dropdown inputFear;
     public Dropdown inputWeakness;
     public Dropdown inputVice;
+    /*==============-Feild To Hold Existing Dropdowns-============*/
+
     /*======================================-Connects to screen inputs-===================================*/
+
+    /*
+     * Start: Adds a listener on start up to reset stats when the weakness
+     * dropbox is changed.
+     * 
+     * resetAttributes: Preforms Code to reset stats on change.
+     */
+
     void Start()
     {
         /*  if (weakness != null)
@@ -32,9 +46,6 @@ public class informationDisplay : MonoBehaviour
           }
           */
     }
-
-
-
 
 
     public void resetAttributes(int placeHolder)
@@ -60,33 +71,12 @@ public class informationDisplay : MonoBehaviour
     public void confirmCreation()
     {
         /*
-         * Makes playerCharacter a new character.
-         * Sets the elements of new character to that of what has been entered.
-         * Loads the next scene.
+         *1:Parses inputs to character manage to creat new character
+         *2:Creates new map
+         *3:Loads the next scene.
          */
 
-        /*
-        GameManager.instance.gameModel.playerCharacter = new character();
-        GameManager.instance.gameModel.playerCharacter.Name = inputName.text;
-        SceneManager.LoadScene("game");
-        */
-        //   List<sqlCharacter> lcCharacter = GameManager.instance.DatabaseServices.Connection.Table<sqlCharacter>().Where<sqlCharacter>(
-        //                        x => x.playerName == userManager.CurrentUser.Username
-        //                 ).ToList<sqlCharacter>();
-        /*
-         *   characterName = inputName.text,
-                      health = 100,
-                      spellPoints = 7,
-                      alignment = inputAlignment.options[inputAlignment.value].text,
-                      boon = inputBoon.options[inputBoon.value].text,
-                      fear = inputFear.options[inputFear.value].text,
-                      weakness = inputWeakness.options[inputWeakness.value].text,
-                      vice = inputVice.options[inputVice.value].text,
-                      playerName = userManager.CurrentUser.Username,
-         * */
 
-
-       
         characterManager.createCharacter(inputName.text,
             inputBoon.options[inputBoon.value].text,
             inputAlignment.options[inputAlignment.value].text,
@@ -100,14 +90,7 @@ public class informationDisplay : MonoBehaviour
 
 
 
-        /*
-       characterManager.createCharacter("Allan",
-           "Allan",
-           "Allan",
-           "Allan",
-          "Allan",
-           "Allan");
-         */
+  
     }
 
 }

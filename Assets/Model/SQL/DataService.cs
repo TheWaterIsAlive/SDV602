@@ -70,29 +70,7 @@ public class DataService  {
 
 	public void CreateDB(System.Type[] pTableTypes)
     {
-        /*_connection.DropTable<user> ();
-		_connection.CreateTable<user> ();
-
-		_connection.InsertAll (new[]{
-			new user{
-				Username = "Allam",
-                Password = "Password1"
-			},
-            new user{
-                Username = "Allan",
-                Password = "Password2"
-            },
-           new user{
-                Username = "Allen",
-                Password = "Password3"
-            },
-          new user{
-                Username = "Alan",
-                Password = "Password4"
-            },
-        });
-        */
-        // Gnarly (using Linq) lambda trick in place of a loop, build the "Where"s then execute with a ToList, 
+  
         var createList = pTableTypes.Where<System.Type>(x =>
         {
             _connection.CreateTable(x);
@@ -110,10 +88,7 @@ public class DataService  {
 		return _connection.Table<user>().Where(x => x.Username == "Roberto");
 	}
 
-/*	public Person GetJohnny(){
-		return _connection.Table<Person>().Where(x => x.Name == "Johnny").FirstOrDefault();
-	}
-    */
+   
 	public user CreateUser(string pUsername, string pPassword){
 		var lcUser = new user{
 				Username = pUsername,

@@ -5,12 +5,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 public static class persist
 {
-
+    /*
+     * Origional Method for saving data,
+     * as the classes this was design to work with
+     * are not longer in uses, this currently doesn't work.
+     * 
+     */
 
     
 
- 
-
+/*============================================+Save Character Funtion+=======================================*/
     public static void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
@@ -21,7 +25,10 @@ public static class persist
         bf.Serialize(file, data);
         file.Close();
     }
+    /*============================================-Save Character Funtion-=======================================*/
 
+
+    /*============================================+Load Character Funtion+=======================================*/
     public static void Load()
     {
         if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
@@ -36,8 +43,9 @@ public static class persist
             // Experience = data.experience;
         }
     }
+    /*============================================-Load Character Funtion-=======================================*/
 }
 
 
-    
+
 

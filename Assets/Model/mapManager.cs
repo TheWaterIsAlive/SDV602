@@ -2,30 +2,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Model
 {
     public static class mapManager
     {
+
+        /*==================================+ Varables +=========================*/
         public static sqlMyMap currentMap;
         public static int currentX;
         public static int currentY;
+        /*==================================- Varables -=========================*/
 
-        // internal static sqlMyMap CurrentMap { get => currentMap; set => currentMap = value; }
-
+        /*==================================+ Makes New Map +=========================*/
         public static void makeNewMap()
         {
 
-
-
-
-
             var lcNewMap = new sqlMyMap
             {
-                characterID = characterManager.Character.Id,
+                characterID = characterManager.Character.characterName,
                 gridID = (GameManager.instance.DatabaseServices.Connection.Table<sqlMapGrid>(
                        ).ToList<sqlMapGrid>().Count()) + 1
 
@@ -34,7 +30,13 @@ namespace Assets.Model
 
             GameManager.instance.DatabaseServices.Connection.Insert(lcNewMap);
             currentMap = lcNewMap;
-
+            /*
+             * mapID what this space belongs too
+             * scene name what is in the space
+             * X and Y possition is where the space is located on the map
+             * 
+             * 
+             */
 
             var lcFirstSpace = new sqlMapGrid
             {
@@ -56,15 +58,46 @@ namespace Assets.Model
             };
             GameManager.instance.DatabaseServices.Connection.Insert(lcSecondSpace);
 
+            var lcThirdSpace = new sqlMapGrid
+            {
+                mapID = currentMap.mapID,
+                sceneName = "Fancy House",
+                xPosition = 2,
+                yPosition = 2,
+
+            };
+            GameManager.instance.DatabaseServices.Connection.Insert(lcThirdSpace);
+            var lcForthSpace = new sqlMapGrid
+            {
+                mapID = currentMap.mapID,
+                sceneName = "Big Tree",
+                xPosition = 3,
+                yPosition = 3,
+
+            };
+            GameManager.instance.DatabaseServices.Connection.Insert(lcForthSpace);
+
             currentX = 3;
             currentY = 1;
         }
+        /*==================================- Makes New Map -=========================*/
 
-
-
+        /*=================================+ Property Of the Text Displayed in the game +======================*/
         public static string SqlStory { get => currentStory(); }
 
+        /*=================================- Property Of the Text Displayed in the game -======================*/
 
+        /*=================================+ Get and Add all data +======================*/
+
+            /*
+             * Gets current map
+             * Gets main text
+             * Gets norther text
+             * Gets southern text
+             * Gets eastern text
+             * Gets western text
+             * Add text together
+             */
         private static string currentStory()
         {
             List<sqlMapGrid> lcCurrentMap = getCurrentMap();
@@ -86,7 +119,9 @@ namespace Assets.Model
 
             return addText(lcCurrentText, lcNorthText, lcEastText, lcSouthText, lcWestText);
         }
+        /*=================================- Get and Add all data -======================*/
 
+        /*======================+Gets current map+===========================*/
         public static List<sqlMapGrid> getCurrentMap()
         {
             List<sqlMapGrid> lcCurrentMap = GameManager.instance.DatabaseServices.Connection.Table<sqlMapGrid>().Where(
@@ -94,8 +129,9 @@ namespace Assets.Model
             Debug.Log(lcCurrentMap.FirstOrDefault().sceneName);
             return lcCurrentMap;
         }
+        /*======================-Gets current map-===========================*/
 
-       
+        /*======================+Text for current space+===========================*/
         public static string findCurrent(List<sqlMapGrid> lcCurrentMap)
         {
             sqlMapGrid lcCurrentScene = lcCurrentMap.Where(grid => grid.xPosition == currentX && grid.yPosition == currentY).FirstOrDefault();
@@ -105,7 +141,8 @@ namespace Assets.Model
                         ).ToList<sqlScenes>().FirstOrDefault<sqlScenes>().sceneDiscription;
             return lcCurrentText;
         }
-
+        /*======================-Text for current space-===========================*/
+        /*======================+Text for West space+===========================*/
         public static string findWest(List<sqlMapGrid> lcCurrentMap)
         {
 
@@ -124,7 +161,9 @@ namespace Assets.Model
 
             }
         }
+        /*======================-Text for West space-===========================*/
 
+        /*======================+Text for East space+===========================*/
         public static string findEast(List<sqlMapGrid> lcCurrentMap)
         {
 
@@ -147,7 +186,10 @@ namespace Assets.Model
 
 
         }
+        /*======================-Text for East space-===========================*/
 
+
+        /*======================+Text for South space+===========================*/
         public static string findSouth(List<sqlMapGrid> lcCurrentMap)
         {
 
@@ -168,7 +210,10 @@ namespace Assets.Model
 
             }
         }
+        /*======================-Text for South space-===========================*/
 
+
+        /*======================+Text for North space+===========================*/
         public static string findNorth(List<sqlMapGrid> lcCurrentMap)
         {
 
@@ -191,7 +236,17 @@ namespace Assets.Model
 
             
         }
+        /*======================-Text for North space-===========================*/
 
+
+        /*======================+Adds only relanvent text+===========================*/
+        /*
+         * For each piece of text passed to this check if it is "empty",
+         * if it is don't add it to the return value.
+         * 
+         * 
+         * 
+         */
         private static string addText(string pCurrentText,
             string pNorthText,
             string pEastText,
@@ -228,13 +283,13 @@ namespace Assets.Model
             return lcFullText;
 
         }
+        /*======================-Adds only relanvent text-===========================*/
+
+
+    }
 
 
 
-}
-
-
-  
 }
 
 

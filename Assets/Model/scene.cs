@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class scene
 {
-
+    /*===OutDated====*/
 
     /*=======================================+Scene Attributes+=============================================*/
     private string _story;

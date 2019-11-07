@@ -10,6 +10,10 @@ public static class elementManager
      * This class Stores static dictonaries of 
      * all of the game elements to keep consistancy
      * between different Screens.
+     * NO LONGER IN USE
+     * Was used to store object before SQL was implemented.
+     * 
+     * In the Future this could be used to pre-load aspects of the game
      */
 
 
